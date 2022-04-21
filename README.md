@@ -1,13 +1,15 @@
 # Awesome-book
 
-SPA vanilla js application to show case the power of using js
-to reduce server call for every dynamic routing
+SPA vanilla js application 
 
 ![screencapture-gedewon-github-io-Awesome-book-2022-04-21-16_08_48](https://user-images.githubusercontent.com/56429354/164465005-8a31cc73-5dbd-44ff-89aa-d734d44da1e2.png)
 
+
 # Awsomebook website
 
+
 > Dynamic Single page application using JS injection
+
 
 ## Built With
 
@@ -21,9 +23,11 @@ to reduce server call for every dynamic routing
 
 [Live Demo Link](https://gedewon.github.io/Awesome-book/)
 
+
 ## Getting Started
 
 To get a local copy up and running follow these simple example steps.
+
 
 1.  clone repo either through ssh / https
 
@@ -51,10 +55,12 @@ cd Awesome-book.git
  npm i
 ```
 
+
 👤 **Gedewon**
 
 - GitHub: [Gedewon](https://github.com/Gedewon)
 - LinkedIn: [Gedewon](https://linkedin.com/in/gedewon)
+
 
 ## 🤝 Contributing
 
@@ -65,3 +71,4 @@ Feel free to check the [issues page](https://github.com/Gedewon/Awesome-book/iss
 ## Show your support
 
 Give a ⭐️ if you like this project!
+
