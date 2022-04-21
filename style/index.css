@@ -122,3 +122,12 @@ section .add-book {
   justify-content: center;
   align-items: center;
 }
+
+footer {
+  position: absolute;
+  bottom: 0px;
+  border: 2px solid black;
+  margin: 5px 20px;
+  width: 90%;
+  overflow: hidden;
+}
