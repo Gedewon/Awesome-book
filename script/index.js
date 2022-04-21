@@ -1,53 +1,49 @@
-const timeDate = document.querySelector("#time-date");
-
-var today = new Date();
-var date =
-  today.getFullYear() + "-" + (today.getMonth() + 1) + "-" + today.getDate();
+const timeDate = document.querySelector('#time-date');
 
 timeDate.innerHTML = new Date();
 
 class BooksShelf {
   constructor() {
-    if (localStorage.getItem("books") === null) {
+    if (localStorage.getItem('books') === null) {
       this.books = [];
       return;
     }
-    this.books = JSON.parse(localStorage.getItem("books"));
+    this.books = JSON.parse(localStorage.getItem('books'));
   }
 
   addBook(book = null) {
     if (book === null) return;
     this.books.push(book);
-    localStorage.setItem("books", JSON.stringify(this.books));
+    localStorage.setItem('books', JSON.stringify(this.books));
   }
 
   removeBook(bookIndex) {
     this.books = this.books.filter((item, index) => index !== bookIndex);
-    localStorage.setItem("books", JSON.stringify(this.books));
+    localStorage.setItem('books', JSON.stringify(this.books));
   }
 }
 
-const booksContainer = document.getElementById("books-dynamic-container");
+const booksContainer = document.getElementById('books-dynamic-container');
 
-const title = document.getElementById("title");
+const title = document.getElementById('title');
 // eslint-disable-next-line no-unused-vars
 
 const allAddedBooks = new BooksShelf();
 
 function reloadBook() {
-  let listOfbooks = allAddedBooks.books
+  const listOfbooks = allAddedBooks.books
     .map(
       (
         bookItem,
-        index
+        index,
       ) => `<div class="book-item"  ><p class='title-author'><strong>"${bookItem.titleInput}" by ${bookItem.author}.</strong></p>
             <button class='remove-btn' onclick="removeBook(${index})">Remove</button>
-            </div>`
+            </div>`,
     )
-    .join("");
+    .join('');
   booksContainer.innerHTML = listOfbooks;
   if (allAddedBooks.books.length === 0) {
-    booksContainer.style.cssText = "border: none;";
+    booksContainer.style.cssText = 'border: none;';
   }
   return listOfbooks;
 }
@@ -55,11 +51,11 @@ function reloadBook() {
 reloadBook();
 
 function attach() {
-  const titleInput = document.getElementById("title-input");
-  const author = document.getElementById("author-input");
-  const addBookForm = document.getElementById("form-add-book");
+  const titleInput = document.getElementById('title-input');
+  const author = document.getElementById('author-input');
+  const addBookForm = document.getElementById('form-add-book');
 
-  addBookForm.addEventListener("submit", (event) => {
+  addBookForm.addEventListener('submit', (event) => {
     // function submitForm(event) {
     event.preventDefault();
     const newBook = {
@@ -68,8 +64,8 @@ function attach() {
     };
 
     allAddedBooks.addBook(newBook);
-    titleInput.value = "";
-    author.value = "";
+    titleInput.value = '';
+    author.value = '';
     reloadBook();
   });
 }
@@ -80,15 +76,15 @@ const removeBook = (bookIndex) => {
   reloadBook();
 };
 
-let screenElement = {
+const screenElement = {
   list: {
-    title: "All Awesome books",
-    content: function () {
+    title: 'All Awesome books',
+    content() {
       return reloadBook();
     },
   },
   newBook: {
-    title: "Add a new book",
+    title: 'Add a new book',
     content: `<div class="section-con add-book">
     <form method="post" id="form-add-book">
       <input type="text" placeholder="Title" id="title-input" />
@@ -98,7 +94,7 @@ let screenElement = {
   </div>`,
   },
   contact: {
-    title: "Contact information",
+    title: 'Contact information',
     content: `<article class="contact">
         <p>Do have any questions or you just want to say "Hello"?
          </p>
@@ -113,25 +109,26 @@ let screenElement = {
 };
 
 function render(renderAt) {
-  let content = screenElement[renderAt].content;
-  booksContainer.innerHTML = typeof content == "function" ? content() : content;
+  const { content } = screenElement[renderAt];
+  booksContainer.innerHTML = typeof content === 'function' ? content() : content;
   title.innerHTML = screenElement[renderAt].title;
-  booksContainer.style.cssText =
-    renderAt != "list" ? "border: none;" : "border: 3px solid black;";
-  renderAt == "newBook" ? attach() : "";
+
+  booksContainer.style.cssText = renderAt !== 'list' ? 'border: none;' : 'border: 3px solid black;';
+  if (renderAt === 'newBook') {
+    attach();
+  }
 }
 
-document.querySelector("nav").addEventListener("click", (e) => {
-  console.log(e.target.id);
+document.querySelector('nav').addEventListener('click', (e) => {
   switch (e.target.id) {
-    case "list":
-      render("list");
+    case 'list':
+      render('list');
       break;
-    case "newBook":
-      render("newBook");
+    case 'newBook':
+      render('newBook');
       break;
-    case "contact":
-      render("contact");
+    case 'contact':
+      render('contact');
       break;
     default:
       break;
